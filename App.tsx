@@ -1,25 +1,41 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
-import {useI18nextTranslation} from './src/hooks';
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
-  },
-});
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  GetStartedScreen,
+  LoginScreen,
+  RegisterScreen,
+  HomeScreen,
+  SettingScreen,
+} from 'screens/index';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const {t, changeLanguage} = useI18nextTranslation();
-
   return (
-    <View style={styles.container}>
-      <Text>{t('Hello')}</Text>
-      <Button title="VI" onPress={() => changeLanguage('vi')} />
-      <Button title="EN" onPress={() => changeLanguage('en')} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="GetStarted">
+        <Stack.Screen
+          name="GetStarted"
+          component={GetStartedScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="Setting" component={SettingScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
