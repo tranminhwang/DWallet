@@ -14,7 +14,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
       <Text>Login Screen</Text>
       <TouchableOpacityButton
         onPress={() => navigation.navigate('Home')}
-        text="Go to home"
+        text="Go to home page"
       />
       <TouchableOpacityButton
         text="Go to register"
